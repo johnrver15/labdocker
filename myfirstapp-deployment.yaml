@@ -1,0 +1,28 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: myfirstapp
+  labels:
+    app: myapp
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: myapp
+  template:
+    metadata:
+      labels:
+        app: myapp
+    spec:
+      containers:
+      - name: web
+        image: gcr.io/spatial-ether-327522/myfirstapp:2.0
+        ports:
+        - name: http
+          containerPort: 80
+      - name: redis
+        image: redis
+        ports:
+        - name: http
+          containerPort: 6379
+
